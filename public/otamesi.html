@@ -1,62 +1,137 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Firebase UI</title>
-    <script src="/__/firebase/7.17.1/firebase-app.js"></script>
-    <script src="/__/firebase/7.17.1/firebase-auth.js"></script>
-    <script src="/__/firebase/init.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-    <style>
-      .Info {
-        display: flex;
-        justify-content: center;
-        height: 48px;
-        line-height: 48px;
-      }
-      
-      .Info button {
-        height: 24px;
-        margin: 12px;
-      }
+    <title>Hello FireStore</title>
+    <style type="text/css">
+        button {
+            width: 100px;
+            height: 30px;
+            margin: 5px;
+        }
+
+        #msg {
+            display: none;
+            border: 1px solid gray;
+            margin: 10px;
+            padding: 10px;
+            width: 600px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="Info">
-      <button id="sign-out" onclick="signout()">sign out</button>
-    </div>
+<canvas width="200" height="200" id="sample"></canvas>
+<script>
+    var canvasElem = document.getElementById('sample');
+    var ctx = canvasElem.getContext('2d');
 
-    <h1>ログインしたら見れる画面</h1>
-    <p>頭</p>
-    <p>肩</p>
-    <p>耳</p>
-    <p>肘</p>
-    <p>鼻</p>
+    //ctx.fillStyle = 'black';
+    ctx.strokeStyle = 'red';
+    ctx.rect(0, 0, 200, 200);
+    ctx.fill();
+    ctx.stroke();
+</script>
 
-    <script> 
-    function signout() {
-        firebase.auth().signOut()
-          .then(_ => {
-            location.href = './index.html';
-        }, err => {
-    // エラーを表示する等
-        });
-    }
-    firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-    // サインインしていない状態
-    // サインイン画面に遷移する等
-    // 例:
-      location.href = './index.html';
-      } else {
-      // サインイン済み
-      }
+<h1>Hello FireStore</h1>
+<form>
+    <button id="addData" type="button">追加</button><br>
+    <button id="readData" type="button">参照</button><br>
+    <button id="updateData" type="button">更新</button><br>
+    <button id="removeData" type="button">削除</button><br>
+</form>
+<div id="msg"></div>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-firestore.js"></script>
+<script src="/js/config.js"></script>
+<script>
+    // Firestoreのインスタンス作成
+    var db = firebase.firestore();
+    var LIST = [];  //ID保管用
+
+    /**
+     * データの追加
+     **/
+    document.querySelector("#addData").addEventListener("click", () => {
+        db.collection("users").add({
+            name: "マイメロ",
+            age: 27
+        })
+            .then((doc) => {
+                LIST.push(doc.id);
+                showMessage(`追加に成功しました (${doc.id})`);
+            })
+            .catch((error) => {
+                showMessage(`追加に失敗しました (${error})`);
+            });
     });
-    </script>
+
+    /**
+     * データの参照
+     **/
+    document.querySelector("#readData").addEventListener("click", () => {
+        db.collection("users").get().then((querySnapshot) => {
+            var buff = [];
+            var html = "<ul>";
+            querySnapshot.forEach((doc) => {
+                var data = doc.data();
+                html += `<li>${doc.id} => ${data.name}, ${data.age}</li>`;
+                buff.push(doc.id);
+            });
+            html += "</ul>";
+            LIST = buff;
+            showMessage(html);
+        })
+            .catch((error) => {
+                showMessage(`データの取得に失敗しました (${error})`);
+            });
+    });
+
+    /**
+     * データの更新
+     **/
+    document.querySelector("#updateData").addEventListener("click", () => {
+        db.collection("users").doc(LIST.slice(0, 1)[0]).set({
+            name: "ポムポムプリン",
+            age: 32
+        })
+            .then(() => {
+                showMessage(`更新に成功しました`);
+            })
+            .catch((error) => {
+                showMessage(`更新に失敗しました (${error})`);
+            });
+    });
+
+
+    /**
+     * データの削除
+     **/
+    document.querySelector("#removeData").addEventListener("click", () => {
+        // リストにない場合は何もしない
+        if (LIST.length === 0)
+            return (true);
+
+        db.collection("users").doc(LIST.pop()).delete().then(() => {
+            showMessage("削除しました");
+        })
+            .catch((error) => {
+                showMessage(`削除に失敗しました (${error})`);
+            });
+    });
+
+
+    /**
+     * 実行結果の表示
+     **/
+    function showMessage(str) {
+        var msg = document.querySelector("#msg");
+        msg.innerHTML = str;
+        msg.style.display = "block";
+    }
+</script>
 </body>
 
 </html>
-
