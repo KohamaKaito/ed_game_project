@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+ <!-- <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -16,6 +16,37 @@
       height: 48px;
       line-height: 48px;
     }
+    .Info button {
+      height: 24px;
+      margin: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="Info">
+    <div id="sign-in-status">Checking auth-state...</div>
+    <button id="sign-out" onclick="signout()" style="display: none;">sign out</button>
+  </div>
+  <div id="firebaseui-auth-container"></div> -->
+<!-- script -->
+<!-- <script src="./index.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <title>Firebase Authentication sample 01</title>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" rel="stylesheet" type="text/css">
+  <style>
+    .Info {
+      display: flex;
+      justify-content: center;
+      height: 48px;
+      line-height: 48px;
+    }
 
     .Info button {
       height: 24px;
@@ -25,30 +56,11 @@
 </head>
 
 <body>
-  <div class="Info">
-    <div id="sign-in-status">Checking auth-state...</div>
-    <button id="sign-out" onclick="signout()" style="display: none;">sign out</button>
-  </div>
-
-  <div id="firebaseui-auth-container"></div> -->
-  <!-- script -->
-  <!-- <script src="./index.js"></script>
-</body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <title>Firebase Authentication sample 01</title>
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-  <link href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-  <h1>Firebase Authenction Sample 01</h1>
+  <h1></h1>
   <div id="auth"></div>
-  <script src="/__/firebase/7.16.0/firebase-app.js"></script> 
-  <script src="/__/firebase/7.16.0/firebase-auth.js"></script> 
-  <script src="/__/firebase/init.js"></script> 
+  <script src="/__/firebase/7.16.0/firebase-app.js"></script>
+  <script src="/__/firebase/7.16.0/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
   <script type="text/javascript">
 
     /*
@@ -57,55 +69,65 @@
   ポップアップウィンドウで認証画面を表示、サインイン後元の画面に移動
   サインアウト ボタンと、Googleの表示名をウェルカムメッセージとして表示
   サインアウト 用の関数「signOut」を定義
-
   */
 
-  const ui = new firebaseui.auth.AuthUI(firebase.auth());
-  const uiConfig = {
-  callbacks: {
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      return true;
-    },
-  },
-  signInFlow: 'popup',
-  signInSuccessUrl: 'otamesi.html',
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  ],
-  // tosUrl: 'otamesi.html',
-  privacyPolicyUrl: 'otamesi.html'
-  };
+    const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    const uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+          return true;
+        },
+      },
+      signInFlow: 'popup',
+      signInSuccessUrl: 'otamesi.html',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      ],
+      // tosUrl: 'otamesi.html',
+      privacyPolicyUrl: 'otamesi.html'
+    };
 
-  ui.start('#auth', uiConfig);
+    ui.start('#auth', uiConfig);
 
-  // firebase.auth().onAuthStateChanged(user => {
-  //   if (user) {
-  //       const signOutMessage = `
-  //       <p>Hello, ${user.displayName}!<\/p>
-  //       <button type="submit"  onClick="signOut()">サインアウト<\/button>
-  //       `;
-  //       document.getElementById('auth').innerHTML =  signOutMessage;
-  //       console.log('ログインしています');
+    // firebase.auth().onAuthStateChanged(user => {
+    //   if (user) {
+    //       const signOutMessage = `
+    //       <p>Hello, ${user.displayName}!<\/p>
+    //       <button type="submit"  onClick="signOut()">サインアウト<\/button>
+    //       `;
+    //       document.getElementById('auth').innerHTML =  signOutMessage;
+    //       console.log('ログインしています');
 
-  //   } 
-  // });
+    //   } 
+    // });
 
-  function signOut() {
-  firebase.auth().onAuthStateChanged(user => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        console.log('ログアウトしました');
-        location.reload();
-      })
-      .catch((error) => {
-        console.log(`ログアウト時にエラーが発生しました (${error})`);
+    function signOut() {
+      firebase.auth().onAuthStateChanged(user => {
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            console.log('ログアウトしました');
+            location.reload();
+          })
+          .catch((error) => {
+            console.log(`ログアウト時にエラーが発生しました (${error})`);
+          });
       });
-  });
-  }
+    }
 
   </script>
-</body>
-</html>
 
+
+  <div class="Info">
+    <div id="sign-in-status">Checking auth-state...</div>
+    <button id="sign-out" onclick="signout()" style="display: none;">sign out</button>
+  </div>
+
+  <div id="firebaseui-auth-container"></div>
+  <script src="./index.js"></script>
+
+
+</body>
+
+</html>
