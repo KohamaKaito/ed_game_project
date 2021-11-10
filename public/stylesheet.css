@@ -1,0 +1,17 @@
+/* game_windowの設定 */
+#game_window {
+    /* 外枠 */
+    border: 2px solid;
+    /* 場所調整 */
+    margin-top: 5%;
+    margin-left: 20%;
+    /* サイズ調整 */
+    width: 60%;
+    height: 80%;
+    /* 色設定 */
+    background-color: azure;
+    color: black;
+
+    display: flex;
+    flex-direction: column;
+}
