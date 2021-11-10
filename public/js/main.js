@@ -43,6 +43,8 @@ app.stage.addChild(loginScene);
 
 function toGameScene(){
     console.log('ゲーム画面へ遷移します！');
+    app.stage.removeChild(loginScene);
+    app.stage.addChild(gameScene);
 }
 
 
@@ -81,6 +83,16 @@ titleScene.addChild(searchRoomButton);
 function searchRoom(){
     console.log('部屋を探しています！')
 }
+
+
+
+// ゲーム画面------------------------------------------
+const gameScene = new PIXI.Container();
+
+let boardImage = new PIXI.Sprite(new PIXI.Texture.from("..images/coin1.png"));
+boardImage.width = gameWindowWidth;
+//boardImage.height = ;
+gameScene.addChild(boardImage);
 
 
 
