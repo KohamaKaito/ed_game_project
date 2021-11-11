@@ -1,13 +1,20 @@
+html{
+    background-color: #EAFFD0;
+}
+
 /* game_windowの設定 */
 #game_window {
     /* 外枠 */
-    border: 2px solid;
+    /* border: 2px solid; */
+
+    /* サイズ調整 */
+    width: 90%;
+    height: 90%;
+
     /* 場所調整 */
     margin-top: 5%;
-    margin-left: 20%;
-    /* サイズ調整 */
-    width: 60%;
-    height: 80%;
+    margin-left: 5%;
+
     /* 色設定 */
     background-color: azure;
     color: black;
