@@ -1,4 +1,5 @@
-// コンソールの内容をそのままコピペ
+// 設定ファイル
+
 var config = {
     apiKey: "AIzaSyCsmz_vqciQDjXHh9l8ekTqiERG4AowB5g",
     authDomain: "ed-game-project.firebaseapp.com",
