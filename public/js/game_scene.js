@@ -27,24 +27,6 @@ if(gameWindowWidth*0.6 <= gameWindowHeight){
 gameScene.addChild(boardImage);
 
 
-// 赤いコインを配置
-let coin1Image = new PIXI.Sprite(new PIXI.Texture.from("images/coin1.png"));
-coin1Image.width = boardImage.width/7;
-coin1Image.height = boardImage.width/7;
-coin1Image.x = gameWindowWidth - 100;
-coin1Image.y = boardImage.y;
-gameScene.addChild(coin1Image);
-
-
-// 黄色いコインを配置
-let coin2Image = new PIXI.Sprite(new PIXI.Texture.from("images/coin2.png"));
-coin2Image.width = boardImage.width/7;
-coin2Image.height = boardImage.width/7;
-coin2Image.x = gameWindowWidth - 100;//boardImage.x + coin2Image.width;
-coin2Image.y = gameWindowHeight - 100//boardImage.y;
-gameScene.addChild(coin2Image);
-
-
 //セレクトボタン1の配置
 let selectButtonImage1 = new PIXI.Sprite(new PIXI.Texture.from("images/selectButton.png"));
 selectButtonImage1.interactive = true;
@@ -127,3 +109,16 @@ selectButtonImage7.x = boardImage.x + selectButtonImage7.width * 6;
 selectButtonImage7.y = boardImage.y;
 selectButtonImage7.on('pointertap', insertCoin7);
 gameScene.addChild(selectButtonImage7);
+
+
+// コインを描画する関数
+function drawCoin(row,column,activePlayer){
+    let coin1Image2 = new PIXI.Sprite(new PIXI.Texture.from("images/coin"+activePlayer+".png"));
+    coin1Image2.width = boardImage.width/7;
+    coin1Image2.height = boardImage.width/7;
+    coin1Image2.x = boardImage.x + (boardImage.height/7)*(column);
+    coin1Image2.y = boardImage.y + (boardImage.height/7)*(row+1);
+    gameScene.addChild(coin1Image2);
+    gameScene.removeChild(boardImage);
+    gameScene.addChild(boardImage);
+}
