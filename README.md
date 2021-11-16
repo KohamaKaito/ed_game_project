@@ -10,3 +10,10 @@ e195713   Iju Hoshi
 e195746   Kohama Kaito  
 e195749   Hijikata Atsuya  
 e195758   Shimoji Reo  
+
+
+# 技術選定
+フロントエンド：HTML/CSS/JavaScript(PixiJS)  
+バックエンド　：Firebase/Firestore  
+  
+PixiJS・・・ブラウザ上で、様々な2Dグラフィックス処理を実現するためのJavaScriptライブラリ
