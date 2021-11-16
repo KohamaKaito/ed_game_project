@@ -113,12 +113,12 @@ gameScene.addChild(selectButtonImage7);
 
 // コインを描画する関数
 function drawCoin(row,column,activePlayer){
-    let coin1Image2 = new PIXI.Sprite(new PIXI.Texture.from("images/coin"+activePlayer+".png"));
-    coin1Image2.width = boardImage.width/7;
-    coin1Image2.height = boardImage.width/7;
-    coin1Image2.x = boardImage.x + (boardImage.height/7)*(column);
-    coin1Image2.y = boardImage.y + (boardImage.height/7)*(row+1);
-    gameScene.addChild(coin1Image2);
+    let coinImage = new PIXI.Sprite(new PIXI.Texture.from("images/coin"+activePlayer+".png"));
+    coinImage.width = boardImage.width/7;
+    coinImage.height = boardImage.width/7;
+    coinImage.x = boardImage.x + (boardImage.height/7)*(column);
+    coinImage.y = boardImage.y + (boardImage.height/7)*(row+1);
+    gameScene.addChild(coinImage);
     gameScene.removeChild(boardImage);
     gameScene.addChild(boardImage);
 }

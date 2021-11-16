@@ -13,12 +13,13 @@
 const loginScene = new PIXI.Container();
 
 
-// タイトルの文字を配置
-let titleText = new PIXI.Text("CONNECT4");
-titleText.style.fontSize = gameWindowWidth/20;
-titleText.x = gameWindowWidth/2 - titleText.width/2;
-titleText.y = gameWindowHeight/4;
-loginScene.addChild(titleText);
+// タイトルロゴの配置
+let titleLogo = new PIXI.Sprite(new PIXI.Texture.from("images/titleLogo.png"));
+titleLogo.width = gameWindowWidth/2;
+titleLogo.height = titleLogo.width/2;
+titleLogo.x = (gameWindowWidth-titleLogo.width)/2;
+titleLogo.y = gameWindowHeight/8;
+loginScene.addChild(titleLogo);
 
 
 // ログインボタンを配置
