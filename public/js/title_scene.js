@@ -12,12 +12,13 @@
 const titleScene = new PIXI.Container();
 
 
-// タイトルの文字を配置
-let titleText2 = new PIXI.Text("CONNECT4");
-titleText2.style.fontSize = gameWindowWidth/20;
-titleText2.x = gameWindowWidth/2 - titleText2.width/2;
-titleText2.y = gameWindowHeight/4;
-titleScene.addChild(titleText2);
+// タイトルロゴの配置
+let titleLogo2 = new PIXI.Sprite(new PIXI.Texture.from("images/titleLogo.png"));
+titleLogo2.width = gameWindowWidth/2;
+titleLogo2.height = titleLogo2.width/2;
+titleLogo2.x = (gameWindowWidth-titleLogo2.width)/2;
+titleLogo2.y = gameWindowHeight/8;
+titleScene.addChild(titleLogo2);
 
 
 // 部屋を作るボタンの配置

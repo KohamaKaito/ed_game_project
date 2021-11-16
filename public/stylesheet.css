@@ -14,11 +14,4 @@ html{
     /* 場所調整 */
     margin-top: 5%;
     margin-left: 5%;
-
-    /* 色設定 */
-    background-color: azure;
-    color: black;
-
-    display: flex;
-    flex-direction: column;
 }
