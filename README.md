@@ -14,7 +14,7 @@ e195758   Shimoji Reo
   
   
   
-# 技術選定
+# Languages
 フロントエンド：HTML/CSS/JavaScript(PixiJS)  
 バックエンド　：Firebase/Firestore  
   
