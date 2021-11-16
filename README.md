@@ -6,7 +6,7 @@ URL：https://ed-game-project.web.app/
 
 
 # Contributors
-e195713 Iju Hoshi
-e195746 Kohama Kaito
-e195749 Hijikata Atsuya
-e195758 Shimoji Reo
+e195713 Iju Hoshi  
+e195746 Kohama Kaito  
+e195749 Hijikata Atsuya  
+e195758 Shimoji Reo  
