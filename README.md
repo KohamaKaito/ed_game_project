@@ -16,7 +16,8 @@ e195758   Shimoji Reo
   
 # Languages
 フロントエンド：HTML/CSS/JavaScript(PixiJS)  
-バックエンド　：Firebase/Firestore  
+バックエンド　：Firebase
   
 PixiJS・・・ブラウザ上で、様々な2Dグラフィックス処理を実現するためのJavaScriptライブラリ  
 https://pixijs.com/
+
